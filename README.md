@@ -7,4 +7,11 @@
  If you want to use cl.exe etc. that's in a different location, you must edit the script
 
 # Usage
- Simply run the `build.ps1` file
+ To build, simply run the `build.ps1` file.  
+ If this is not the first time running, clean the previously build files, or clone this repo again.  
+
+ To use in projects, I recommend creating a new system environment variable, eg. `LUADIR`, set to the root path of this repo  
+ Now you can add `$(LUADIR)\include` to Additional Include Directories under C++/General,  
+ add `$(LUADIR)` to Library Directories under VC++ Directories,  
+ and `lua*.lib` to Additional Dependencies under Linker/Input.  
+ You should also probably copy the dll (pre-link event `xcopy "$(LUADIR)\lua*.dll" "$(OutDir)" /Y /I`)
