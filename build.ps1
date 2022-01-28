@@ -33,8 +33,7 @@ if ((Get-FileHash -Algorithm SHA1 "$root\lua-$ver.tar.gz").Hash -ne $checksum)
     Throw "Downloaded file does not match checksum"
 }
 # tar.exe comes with WSL
-cmd.exe /c "tar -xzf $root\lua-$ver.tar.gz"
-Remove-Item "$root\lua-$ver.tar.gz"
+cmd.exe /c "tar -xzf $root\lua-$ver.tar.gz" | Out-Null
 
 
 # === Build
@@ -43,17 +42,17 @@ Set-Location $src
 New-Item -Path $root -Name "include" -ItemType "directory" -ErrorAction Ignore
 
 # Build object files
-cmd.exe /c "$cl /MD /O2 /Ot /c /DLUA_BUILD_AS_DLL *.c"
+cmd.exe /c "$cl /MD /O2 /Ot /c /DLUA_BUILD_AS_DLL *.c" | Out-Null
 
 # Rename the exe objects, so they don't disrupt the next step
 Rename-Item lua.obj lua.o
 Rename-Item luac.obj luac.o
 
 # Link libraries and executables
-cmd.exe /c "$link /DLL /IMPLIB:lua$v.lib /OUT:lua$v.dll *.obj"# lua.dll (dynamic)
-cmd.exe /c "$link /OUT:lua.exe lua.o lua$v.lib"               # lua.exe
-cmd.exe /c "$lib /OUT:lua$v.lib *.obj"                        # lua.lib (static)
-cmd.exe /c "$link /OUT:luac.exe luac.o lua$v.lib"             # luac.exe
+cmd.exe /c "$link /DLL /IMPLIB:lua$v.lib /OUT:lua$v.dll *.obj" | Out-Null # lua.dll (dynamic)
+cmd.exe /c "$link /OUT:lua.exe lua.o lua$v.lib"                | Out-Null # lua.exe
+cmd.exe /c "$lib /OUT:lua$v.lib *.obj"                         | Out-Null # lua.lib (static)
+cmd.exe /c "$link /OUT:luac.exe luac.o lua$v.lib"              | Out-Null # luac.exe
 Set-Location $root
 
 
@@ -71,6 +70,5 @@ foreach ($include in $includes)
 
 
 # === Clean up
-Get-Childitem "$lua\" -Recurse | ForEach-Object {
-    Remove-Item $_.FullName -Recurse -Force -Confirm:$false
-}
+Remove-Item -LiteralPath "$lua\" -Force -Recurse -Confirm:$false
+Remove-Item "$root\lua-$ver.tar.gz"
