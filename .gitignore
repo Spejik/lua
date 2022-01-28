@@ -1,7 +1,5 @@
-lua-5.4.3/
-lua-5.4.3.tar.gz
-luau-0.503/
-luau-0.503.tar.gz
+lua*/
+lua*.tar.gz
 
 include/
 

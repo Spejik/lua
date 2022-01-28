@@ -1,6 +1,6 @@
 # lua
  PowerShell script that downloads and builds the latest Lua or Luau release for Windows.  
- The web with prebuilt binaries has only 5.4.2, while the latest is 5.4.3.  
+ The web with prebuilt binaries has only 5.4.2, while the latest is 5.4.4.  
  This script is mostly only for building, it doesn't set any environment variables etc.
 
  You must have Visual Studio 2022 installed, preferrably in the default path.  
