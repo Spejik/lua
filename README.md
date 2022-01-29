@@ -1,5 +1,5 @@
 # lua
- PowerShell script that downloads and builds the latest Lua or Luau release for Windows.  
+ PowerShell script that downloads and builds the latest Lua release for Windows.  
  The web with prebuilt binaries has only 5.4.2, while the latest is 5.4.4.  
  This script is mostly only for building, it doesn't set any environment variables etc.
 
@@ -14,6 +14,4 @@
  Now you can add `$(LUADIR)\include` to Additional Include Directories under C++/General,  
  add `$(LUADIR)` to Library Directories under VC++ Directories,  
  and `lua*.lib` to Additional Dependencies under Linker/Input.  
- You should also probably copy the dll (pre-link event `xcopy "$(LUADIR)\lua*.dll" "$(OutDir)" /Y /I`)  
-
- Luau support is just experimental, but I'll hopefully do something with it some day
+ You should also probably copy the dll (pre-link event `xcopy "$(LUADIR)\lua*.dll" "$(OutDir)" /Y /I`)
