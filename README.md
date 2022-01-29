@@ -7,7 +7,7 @@
  If you want to use cl/lib/link that's in a different location, you must edit the script
 
 # Usage
- To build, simply run the `build.ps1 <BuildFor; lua|luau> <BuildConfig; any luau cmake config>` file.  
+ To build, simply run the `build.ps1` file.  
  If this is not the first time running, clean the previously build files, or clone this repo again.  
 
  To use in projects, I recommend creating a new system environment variable, eg. `LUADIR`, set to the root path of this repo  
