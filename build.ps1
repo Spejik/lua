@@ -2,7 +2,6 @@
 # Currently supported Lua version: 5.4.4
 # https://www.lua.org/download.html (for checksum)
 Param (
-    [string]$BuildConfig = "Release"
 )
 
 $ver = "5.4.4"
